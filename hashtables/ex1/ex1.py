@@ -7,11 +7,22 @@ from hashtables import (HashTable,
 
 
 def get_indices_of_item_weights(weights, length, limit):
-    ht = HashTable(16)
 
-    """
-    YOUR CODE HERE
-    """
+    ht = HashTable(16)
+    #Insert weights:index kv pairs
+    for i in range(0, length):
+    	hash_table_insert(ht, weights[i], i)
+
+    for i in range(0, length):
+    	cur_weight = weights[i]
+    	answer = hash_table_retrieve(ht, limit-cur_weight)
+    	#If answer is found
+    	if answer:
+
+    		if i > answer:
+    			return (i, answer)
+    		else:
+    			return (answer, i)
 
     return None
 
