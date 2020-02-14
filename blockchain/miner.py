@@ -24,7 +24,14 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
     proof = 0
-    #  TODO: Your code here
+    
+    #code here
+    #takes last hash and looks for a matching 6 character proof. uses encode and hexdigest to create byte like object and a hash
+    #when the proof is found a print statement prints with info
+    last_hash = hashlib.sha256(f'{last_proof}'.encode()).hexdigest()
+    while valid_proof(last_hash, proof) is False:
+        proof += 1
+
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -35,13 +42,14 @@ def valid_proof(last_hash, proof):
     Validates the Proof:  Multi-ouroborus:  Do the last six characters of
     the hash of the last proof match the first six characters of the hash
     of the new proof?
-
     IE:  last_hash: ...AE9123456, new hash 123456E88...
     """
+    #code here
+    guess = f'{proof}'.encode() #encode turns this into a byte-like object hashlib.sha256 creates a hash 
+    hash_guess = hashlib.sha256(guess).hexdigest() #hexdigest converts the hash to a string of hexadecimal characters easier to work with and understand
 
-    # TODO: Your code here!
-    pass
-
+    return hash_guess[:6] == last_hash[-6:]
+    #making sure the last proof matches the first six characters of the hash of the new proof
 
 if __name__ == '__main__':
     # What node are we interacting with?

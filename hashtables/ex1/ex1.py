@@ -9,7 +9,7 @@ from hashtables import (HashTable,
 def get_indices_of_item_weights(weights, length, limit):
 
     ht = HashTable(16)
-    #Insert weights:index kv pairs
+    #code here
     for i in range(0, length):
     	hash_table_insert(ht, weights[i], i)
 
